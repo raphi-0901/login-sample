@@ -1,0 +1,87 @@
+<div class="jumbotron mt-5">
+  <h1 class="display-4">Hier User!</h1>
+  <div class="grid-container">
+    <app-paginator
+      (onUpdate)="searchUsers($event)"
+      [totalItems]="data?.totalItems"
+    >
+      <ng-container slot="header">
+        <div
+          class="grid grid-cols-2 lg:grid-cols-4 [&>*]:p-4 [&>*]:pr-6 font-bold border-b-4 border-primary border text-right">
+          <div class="hidden lg:block">ID</div>
+          <div data-sortable data-sort-by="email">E-Mail</div>
+          <div data-sortable data-sort-by="name">Name</div>
+          <div class="hidden lg:block">Aktionen</div>
+        </div>
+      </ng-container>
+      <ng-container>
+        <div *ngFor="let user of data?.users"
+             class="even:bg-primary/10 odd:bg-primary/5 border-primary last:border last:border-t-0 max-md:first:border-t border-x text-right"
+        >
+          <div class="hidden lg:grid grid-cols-4 [&>*]:p-4 [&>*]:self-center">
+            <div>{{ user.id }}</div>
+            <div>{{ user.email }}</div>
+            <div>{{ user.name }}</div>
+            <div class="justify-self-end">
+              <button class="flex gap-2 justify-between items-center" *ngIf="!user.blocked"
+                      (click)="openModal(user, ACTION.BLOCK)"><img class="h-6 object-cover" src="/assets/block.svg"
+                                                                     alt="">Block
+              </button>
+              <button class="flex gap-2 justify-between items-center" *ngIf="user.blocked"
+                      (click)="openModal(user, ACTION.UNBLOCK)"><img class="h-6 object-cover" src="/assets/unblock.svg"
+                                                                   alt="">Unblock
+              </button>
+            </div>
+          </div>
+          <div class="lg:hidden grid [&>*]:p-4 [&>*]:self-center">
+            <div class="flex justify-between">
+              <div class="font-bold">ID:</div>
+              <div>{{ user.id }}</div>
+            </div>
+            <div class="flex justify-between flex-wrap">
+              <div class="font-bold">E-Mail:</div>
+              <div>{{ user.email }}</div>
+            </div>
+            <div class="flex justify-between">
+              <div class="font-bold">Name:</div>
+              <div>{{ user.name }}</div>
+            </div>
+            <div class="justify-self-end">
+              <button class="flex gap-2 justify-between items-center" *ngIf="user.blocked"
+                      (click)="openModal(user, ACTION.BLOCK)"><img class="h-6 object-cover" src="/assets/block.svg"
+                                                                     alt="">Block
+              </button>
+              <button class="flex gap-2 justify-between items-center" *ngIf="!user.blocked"
+                      (click)="openModal(user, ACTION.UNBLOCK)"><img class="h-6 object-cover" src="/assets/unblock.svg"
+                                                                   alt="">Unblock
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </app-paginator>
+  </div>
+  <app-modal (onCloseModal)="onCloseModal()">
+    <ng-container *ngIf="selectedUser">
+
+      <div *ngIf="action === ACTION.UNBLOCK">
+        <h2>Unblock user: {{ selectedUser.name }}</h2>
+        <p>Are you sure that you want to unblock the user <b>{{ selectedUser.name}}</b> ({{selectedUser.email}})</p>
+        <div class="flex gap-2 mt-8">
+          <button (click)="unblockUser()">Unblock</button>
+          <button (click)="childComponent.close()">Cancel</button>
+        </div>
+      </div>
+
+      <div *ngIf="action === ACTION.BLOCK">
+        <h2>Block user: {{ selectedUser.name }}</h2>
+        <p>Are you sure that you want to block the user <b>{{ selectedUser.name}}</b> ({{selectedUser.email}})</p>
+        <div class="flex gap-2 mt-8">
+          <button (click)="blockUser()">Block</button>
+          <button (click)="childComponent.close()">Cancel</button>
+        </div>
+      </div>
+
+    </ng-container>
+  </app-modal>
+</div>

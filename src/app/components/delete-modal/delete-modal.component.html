@@ -1,0 +1,16 @@
+<!-- Modal toggle -->
+  <button id="deleteButton" (click)="showModal()" class="mx-2 bg-red-600" type="button">
+  {{title}}
+  </button>
+
+<!-- Main modal -->
+<div *ngIf="visible" class="flex items-center justify-center bg-black/30 fixed inset-0 z-10 h-modal md:h-full">
+    <div class="relative bg-white p-4 rounded-md">
+      <h1 class="text-2xl">{{ title }}</h1>
+        <p>{{ message }}</p>
+        <div class="flex justify-between mt-4">
+          <button (click)="hideModal()" class="bg-gray-400">Cancel</button>
+          <button (click)="onConfirm.emit()">{{confirmText}}</button>
+    </div>
+  </div>
+

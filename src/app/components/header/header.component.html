@@ -1,0 +1,43 @@
+<nav>
+  <div class="grid-container flex flex-col md:grid">
+    <div class="flex justify-between items-center text-background">
+      <div class="flex justify-between items-center text-background">
+        <img src="" alt="">
+        <a class="" routerLink="/">TicketLine</a>
+      </div>
+      <ul class="md:flex gap-2 hidden text-background">
+        <a class="" *ngIf="!authService.isLoggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
+        <a class="" *ngIf="authService.isLoggedIn()" routerLink="/profile" routerLinkActive="active">Profile</a>
+        <a class="" *ngIf="authService.isLoggedIn()" routerLink="/" (click)="authService.logoutUser()">Logout</a>
+        <a class="" *ngIf="authService.isLoggedIn()" routerLink="/events">Events</a>
+        <a class="" *ngIf="authService.isLoggedIn()" routerLink="/artists">Künstler</a>
+        <a class="" *ngIf="authService.getUserRole()==='ADMIN'" routerLink="/users">Nutzer</a>
+      </ul>
+      <div
+        class="menu-toggler"
+        [ngClass]="{ 'active open': menuOpen }"
+        (click)="menuOpen = !menuOpen"
+      >
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div
+      class="grid gap-4 transition-[grid-template-rows,_padding] ease-in-out md:hidden"
+      [class]="{ 'py-x-small': menuOpen }"
+      [style]="{
+        'grid-template-rows': menuOpen ? '1fr' : '0fr',
+      }"
+    >
+      <div class="overflow-hidden">
+        <ul class="gap-2 text-background flex flex-col">
+          <a class="" *ngIf="!authService.isLoggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
+          <a class="" *ngIf="authService.isLoggedIn()" routerLink="/" (click)="authService.logoutUser()">Logout</a>
+          <a class="" *ngIf="authService.isLoggedIn()" routerLink="/events">Events</a>
+          <a class="" *ngIf="authService.isLoggedIn()" routerLink="/artists">Künstler</a>
+          <a class="" *ngIf="authService.getUserRole()==='ADMIN'" routerLink="/users">Nutzer</a>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

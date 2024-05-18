@@ -1,0 +1,21 @@
+<div class="content">
+    <div class="header">
+        <h1>Aktuelle Top Events</h1>
+        <h6>Hier finden Sie die akutellen beliebtesten Events.</h6>
+    </div>
+    <div *ngFor="let event of events" class="event">
+        <div class="sales">
+            <div class="sales-text">
+                x Tickets übrig!
+            </div>
+        </div>
+        <div class="event-name-date">
+            <div class="event-name">{{ event.name }}</div>
+            <div class="event-date">
+                <span class="event-day">{{ event.startTime | date:'dd' }}</span>
+                <span class="event-month">{{ event.startTime | date:'MMM' }}</span>
+            </div>
+        </div>
+        <div class="button" (click)="buyTickets(event)">Tickets kaufen / reservieren</div>  
+    </div>
+</div>

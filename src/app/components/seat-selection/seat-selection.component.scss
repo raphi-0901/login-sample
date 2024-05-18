@@ -1,0 +1,39 @@
+.seat-selection {
+  @apply grid gap-2 overflow-x-auto py-2;
+
+  .row {
+    @apply grid gap-6 grid-cols-[5rem_1fr] place-items-center overflow-x-auto;
+  }
+
+  .rowIndicator {
+    @apply grid place-items-center left-0 size-full bg-white shadow sticky z-10 rounded;
+  }
+
+  .seats {
+    @apply flex gap-2 items-center;
+  }
+
+  .seat {
+    @apply aspect-[2/5] w-4 flex justify-center items-center text-white cursor-pointer rounded select-none overflow-hidden opacity-40 border border-primary;
+
+    &[status="SELECTED"] {
+      @apply bg-primary opacity-100;
+    }
+
+    &:not([status="OPEN"]):not([status="SELECTED"]) {
+      @apply relative;
+
+      span {
+        @apply bg-black w-px absolute h-full origin-bottom bottom-0;
+      }
+
+      span:first-child {
+        @apply rotate-[-21deg] right-0;
+      }
+
+      span:last-child {
+        @apply rotate-[21deg] left-0;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<h1>{{event.name}}</h1>
+<p>{{ event.description}}</p>
+<app-seat-selection
+  [sectors]="event.auditorium.sectors"
+  (onSeatSelected)="onSeatSelected($event)"
+  (onSeatUnselected)="onSeatUnselected($event)"
+></app-seat-selection>
+<div>
+  <h2>Selected Seats:</h2>
+  <div *ngFor="let seat of selectedSeats" class="selected-seats">
+    {{ (seat.category.price / 100).toFixed(2)}}€ {{ seat.category.name }} Sector {{ seat.sector }}: Row:{{ seat.row }}-{{ seat.number }}
+  </div>
+</div>

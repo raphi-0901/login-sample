@@ -1,0 +1,17 @@
+You are currently in sector
+<select (change)="onSectorChange($event)">
+  <option *ngFor="let sector of sectors" [value]="sector.name">{{ sector.name }}</option>
+</select>
+
+<div class="grid-container grid place-content-center isolate">
+  <div class="seat-selection" [style.grid-template-columns]="gridTemplateColumn">
+    <div *ngFor="let seat of flattenedSeats; let i = index" [ngClass]="{
+  'rowIndicator': i % (seatsPerRow+1) === 0
+  }">
+      <div *ngIf="i % (seatsPerRow+1) === 0" class="grid place-items-center">{{ seat }}</div>
+      <div *ngIf="i % (seatsPerRow+1) !== 0" (click)="seatClick(seat)" class="seat" [attr.status]="seat.status" [attr.type]="seat.type" [style.background-color]="seat.category.color">
+        <span></span><span></span>
+      </div>
+    </div>
+  </div>
+</div>

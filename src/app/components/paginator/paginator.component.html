@@ -1,0 +1,44 @@
+<div class="paginator">
+  <div class="paginator-top">
+
+    <div class="form-group">
+      <label for="search">Search</label>
+      <input type="text" [(ngModel)]="query" (input)="searchWithDebounce($event.target.value)" name="search" id="search"
+             placeholder="Search">
+    </div>
+    <select
+      [(ngModel)]="pageSize"
+      (change)="pageSizeChange()"
+    >
+      <option *ngFor="let size of pageSizes" [value]="size">{{ size }}</option>
+
+    </select>
+
+  </div>
+  <div class="paginator-header" #header>
+    <ng-content select="[slot=header]"></ng-content>
+  </div>
+  <div class="paginator-content" #content>
+    <ng-content></ng-content>
+  </div>
+  <div class="paginator-bottom">
+    <div class="paginator-pages">
+      <button (click)="previousPage()" [disabled]="currentPage === 1"><</button>
+      <div
+        *ngFor="let page of availablePagesSizes"
+        [class.active]="page === currentPage">
+        <button *ngIf="page !== '...'"
+                (click)="pageChange(page)">
+          {{ page }}
+        </button>
+        <button *ngIf="page === '...'">
+          {{ page }}
+        </button>
+      </div>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">></button>
+    </div>
+    <div>Showing results from {{ (currentPage - 1) * pageSize + 1 }}
+      to {{ Math.min(totalItems, currentPage * pageSize) }}
+    </div>
+  </div>
+</div>

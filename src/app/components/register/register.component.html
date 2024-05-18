@@ -1,0 +1,53 @@
+<div class="grid-container-small">
+  <form class="grid gap-4" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+    <h1 class="mb-0">Register</h1>
+    <p>Register with TicketLine and secure your tickets!</p>
+
+    <div class="form-group !mt-4">
+      <label for="inputName">Name</label>
+      <input type="text" name="name" formControlName="name" id="inputName"
+             aria-describedby="nameHelp" placeholder="Enter name">
+      <div *ngIf="submitted && registerForm.controls.name.errors" class="error">
+        <small *ngIf="registerForm.controls.name.errors.required">Your name is
+          required!
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputEmail">Email</label>
+      <input type="text" name="email" formControlName="email" id="inputEmail"
+             aria-describedby="emailHelp" placeholder="Enter email">
+      <div *ngIf="submitted && registerForm.controls.email.errors" class="error">
+        <small *ngIf="registerForm.controls.email.errors.required">Your email address
+          is required!
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" name="password" formControlName="password" id="password"
+             placeholder="Password">
+      <div *ngIf="submitted && registerForm.controls.password.errors" class="error">
+        <small *ngIf="registerForm.controls.password.errors.required">A password is
+          required!
+        </small>
+        <small *ngIf="registerForm.controls.password.errors.minlength">The password
+          must be at least 8 characters long!
+        </small>
+      </div>
+    </div>
+    <div class="flex gap-4 items-center">
+      <input type="checkbox" name="agb" formControlName="agb" id="agb" required class="size-10 border-primary">
+      <label for="agb" class="select-none" [ngClass]="{
+                'text-red-600': submitted && registerForm.controls.agb.errors
+             }">* I accept the terms and conditions and the privacy policy</label>
+    </div>
+
+    <div class="w-full">
+      <button type="submit" class="w-full">Register</button>
+      <p class="text-center">Already have an account?
+        <a routerLink="/login" routerLinkActive="active" class="underline">Login</a>
+      </p>
+    </div>
+  </form>
+</div>

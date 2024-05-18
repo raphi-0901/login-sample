@@ -1,0 +1,68 @@
+<main class="text-primary">
+  <div class="flex justify-between">
+    <h2 class="display-1">Profile details</h2>
+    <button class="my-2">edit details</button>
+  </div>
+  <div class="w-full bg-primary h-0.5"></div>
+  <form  (ngSubmit)="onEdit()">
+    <div class="row py-3 justify-content-around min-vh-100 grid gap-2">
+      <div class="form-group !mt-4">
+        <label for="email">E-Mail</label>
+        <input type="text" name="email" class="form-control" id="email"
+               aria-describedby="emailHelp" placeholder="Enter email" value="{{userDetails.email}}" disabled>
+      </div>
+      <div class="flex gap-2">
+        <div class="form-group !mt-4">
+          <label for="firstName">first name</label>
+          <input type="text" name="firstName" class="form-control" id="firstName"
+                 placeholder="Max" value="{{userDetails.firstName}}" disabled>
+        </div>
+        <div class="form-group !mt-4">
+          <label for="lastName">last name</label>
+          <input type="text" name="lastName"  class="form-control" id="lastName"
+                 placeholder="Mustermann" value="{{userDetails.lastName}}" disabled>
+        </div>
+      </div>
+
+      <!-- Address Details -->
+      <div>
+        <h2 class="display-1 ">Address</h2>
+        <div class="w-full bg-primary h-0.5  mb-4"></div>
+      </div>
+      <div class="form-group">
+        <label for="street">Street</label>
+        <input type="text" name="street"  class="form-control" id="street"
+               placeholder="street" value="{{userDetails.addressDto.streetAndNumber}}" disabled>
+      </div>
+      <div class="flex gap-2">
+        <div class="form-group w-3/4">
+          <label for="city">City</label>
+          <input type="text" name="city"  class="form-control" id="city"
+                 placeholder="city" value="{{userDetails.addressDto.city}}" disabled>
+        </div>
+        <div class="form-group">
+          <label for="postcode">Postcode</label>
+          <input type="text" name="postcode"  class="form-control" id="postcode"
+                 placeholder="postcode" value="{{userDetails.addressDto.postCode}}" disabled>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="country">Country</label>
+        <input type="text" name="country"  class="form-control" id="country"
+               placeholder="country" value="{{userDetails.addressDto.country}}" disabled>
+      </div>
+      <div>
+        <h2 class="display-1">Payment information</h2>
+        <div class="w-full bg-primary h-0.5  mb-4"></div>
+        <!-- maybe? -->
+      </div>
+    </div>
+    <app-delete-modal
+    confirmText="Delete"
+    message="Are you sure you want to delete your account?"
+    title="Delete Account"
+    (onConfirm)="deleteClicked()"
+  ></app-delete-modal>
+  </form>
+</main>

@@ -1,0 +1,35 @@
+<div class="grid-container-small">
+  <form class="grid gap-4" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <h1 class="mb-0">Login</h1>
+    <p>Sign in to access your TicketLine account.</p>
+    <div class="form-group !mt-4">
+      <label for="inputEmail">Email</label>
+      <input type="text" name="email" formControlName="email" class="form-control" id="inputEmail"
+             aria-describedby="emailHelp" placeholder="Enter email">
+      <div *ngIf="submitted && loginForm.controls.email.errors" class="error">
+        <small *ngIf="loginForm.controls.email.errors.required">Your email address
+          is required!
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" name="password" formControlName="password" class="form-control" id="password"
+             placeholder="Password">
+      <div *ngIf="submitted && loginForm.controls.password.errors" class="error">
+        <small *ngIf="loginForm.controls.password.errors.required">Your password
+          is required!
+        </small>
+        <small *ngIf="loginForm.controls.password.errors.minlength">Your password
+          must be at least 8 characters long!
+        </small>
+      </div>
+    </div>
+    <div class="w-full">
+      <button type="submit" class="w-full">Login</button>
+      <p class="text-center">or
+        <a routerLink="/register" routerLinkActive="active" class="underline">register</a>
+      </p>
+    </div>
+  </form>
+</div>

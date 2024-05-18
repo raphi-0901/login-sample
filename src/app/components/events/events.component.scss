@@ -1,0 +1,64 @@
+.content {
+    margin: auto;
+    width: 50%;
+}
+
+.header {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-weight: bolder;
+}
+
+.event { 
+    margin-bottom: 20px; 
+    border: 3px solid #57748b; 
+    border-radius: 20px;
+}
+
+.event-name-date {
+    display: flex; 
+    align-items: center; 
+    color:#57748b;
+    justify-content: space-between;
+}
+
+.event-name { flex: 1;  
+    font-size: 25px; 
+    font-weight: bold; 
+    margin-left: 10px;
+    width: 50%;
+}
+.event-date { text-align: center; display: inline; margin-right: 10px;}
+.event-day { font-size: 50px; display: block; font-weight: bold;}
+.event-month { font-size: 14px; display: block; font-weight: 700; }
+
+.sales {
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #57748b;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.sales-text {
+    margin-left: 10px; 
+    font-weight: bold;
+}
+.button { 
+    margin-top: 10px; 
+    background-color: #f4faff; 
+    border-color: white; 
+    width: fit-content;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    color: #57748b;
+    font-weight: bold;
+    padding: 2px;
+    border-radius: 5px;
+    cursor: pointer;
+}
