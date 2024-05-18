@@ -1,7 +1,9 @@
 <div class="min-h-[100svh] bg-background flex flex-col justify-between">
-  <div class="flex-1 grid mt-[4.5rem]">
+  <div class="flex-1 grid">
     <app-header></app-header>
-    <div class="grid grid-container">
+    <div class="grid grid-container" [style]="{
+    'margin-top': 'var(--nav-height)'
+    }">
       <router-outlet class="absolute"></router-outlet>
     </div>
   </div>

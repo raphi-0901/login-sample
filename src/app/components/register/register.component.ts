@@ -10,7 +10,7 @@ import {ToastrService} from "ngx-toastr";
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
   host: {
-    class: 'self-center justify-self-center bg-background py-8'
+    class: 'bg-background grid place-items-center my-8'
   }
 })
 export class RegisterComponent {

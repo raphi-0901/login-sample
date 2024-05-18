@@ -11,7 +11,7 @@ import {ToastrService} from "ngx-toastr";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   host: {
-    class: 'bg-background my-auto'
+    class: 'bg-background grid place-items-center my-8'
   }
 })
 export class LoginComponent implements OnInit {
